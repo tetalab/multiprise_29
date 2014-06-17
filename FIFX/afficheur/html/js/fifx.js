@@ -1,7 +1,7 @@
 $(function() {
 
   var refreshSlides = function() {
-    $.getJSON( "gifList.json", function( data ) {
+    $.getJSON( "/gifList.php", function( data ) {
       var items = [];
       $.each( data, function( key, val ) {
         items.push( "<img src='" + val + "' />" );
