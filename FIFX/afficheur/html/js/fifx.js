@@ -12,8 +12,8 @@ $(function() {
   }
 
   var slider = $('#slides').slidesjs({
-    width: 940,
-    height: 528,
+    width: 640,
+    height: 360,
     auto: false,
     callback: {
       loaded: function(number) {
