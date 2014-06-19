@@ -1,26 +1,27 @@
 $(function() {
 
-  var refreshSlides = function() {
-    $.getJSON( "/gifList.php", function( data ) {
-      var items = [];
+  var index = 0,
+      items = [];
+
+  var updateItems = function() {
+    index = 0;
+    $.getJSON( "/?json", function( data ) {
+      items = [];
       $.each( data, function( key, val ) {
-        items.push( "<img src='" + val + "' />" );
+        items.push( "<img src='img/" + val + "' />" );
       });
-      $('#slides').html( items.join( "" );
-      slider.start();
     });
   }
 
-  var slider = $('#slides').slidesjs({
-    width: 640,
-    height: 360,
-    auto: false,
-    callback: {
-      loaded: function(number) {
-        refreshSlides();
-      },
-      complete: funciton(number) {
-        refreshSlides();
-      }
-  });
+  var changeCurrentItem = function() {
+    $('#slide').html(items[index]);
+    index += 1;
+    if(index == items.length) {
+      updateItems();
+    }
+  }
+
+  updateItems();
+  setInterval(changeCurrentItem, 2000);
+
 });
